@@ -1,0 +1,60 @@
+# Maison Parfum Frontend Rules
+
+## Architecture
+
+Always follow this project structure:
+
+components/
+  ui/
+  layout/
+  sections/
+
+## Existing Components
+
+Prefer existing components before creating new ones:
+
+- Button
+- Container
+- SectionTitle
+- ProductCard
+- Navbar
+
+Do not duplicate functionality.
+
+## Styling
+
+- Tailwind CSS only
+- No inline styles
+- Mobile-first responsive design
+- Use existing CSS variables
+- Luxury premium aesthetic
+
+## TypeScript
+
+- Strict typing
+- No any types
+
+## Sections
+
+All sections must:
+
+- Use Container
+- Use SectionTitle when applicable
+- Be responsive
+- Be reusable
+
+## Code Quality
+
+- Small reusable components
+- Clean props interfaces
+- Accessibility friendly
+
+## Design Language
+
+Brand personality:
+
+- Luxury
+- Premium
+- Elegant
+- Minimal
+- Perfume ecommerce
