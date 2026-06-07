@@ -1,0 +1,21 @@
+# WooCommerce Integration Rules
+
+Frontend owns UI.
+
+WooCommerce owns:
+
+- Products
+- Categories
+- Inventory
+- Orders
+
+Never mix API logic into UI components.
+
+Create:
+
+lib/api/
+lib/services/
+
+Use TypeScript.
+
+Use server-side data fetching when possible.
