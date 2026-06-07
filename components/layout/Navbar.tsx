@@ -63,20 +63,20 @@ export default function Navbar() {
             >
               <Search size={20} />
             </button>
-            <button
-              type="button"
+            <Link
+              href="/wishlist"
               aria-label="Wishlist"
               className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)]"
             >
               <Heart size={20} />
-            </button>
-            <button
-              type="button"
-              aria-label="Shopping bag"
+            </Link>
+            <Link
+              href="/cart"
+              aria-label="Cart"
               className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)]"
             >
               <ShoppingBag size={20} />
-            </button>
+            </Link>
 
             <button
               type="button"

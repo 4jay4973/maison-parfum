@@ -1,0 +1,15 @@
+# Feature Development Workflow
+
+Before marking a feature complete:
+
+1. UI renders correctly
+2. Event handlers are connected
+3. Store actions are connected
+4. State updates correctly
+5. TypeScript passes
+6. Mobile view works
+7. Desktop view works
+8. Refresh test passes
+9. Navigation test passes
+
+Do not consider a feature complete if only the UI exists.

@@ -1,0 +1,53 @@
+# State Management Rules
+
+Use Zustand for client-side state.
+
+## State Flow
+
+Every interactive feature must follow:
+
+UI
+↓
+Event Handler
+↓
+Store Action
+↓
+State Update
+↓
+UI Re-render
+
+## Verification Checklist
+
+When creating or modifying features:
+
+- Is the UI connected to an event handler?
+- Is the event handler calling the correct store action?
+- Does the store action update state?
+- Does the UI re-render from store state?
+- Is the component a Client Component when required?
+- Are TypeScript types correct?
+- Does functionality survive page navigation?
+- Does functionality survive page refresh (persist)?
+
+## Common Mistakes
+
+Avoid:
+
+- Creating store actions that are never called
+- Calling undefined store functions
+- Duplicating state in components
+- Using local component state for cart/wishlist data
+- Missing "use client" in Zustand components
+
+## Testing Requirement
+
+For every new feature, verify:
+
+Happy Path:
+User Action → Store Update → UI Update
+
+Refresh Test:
+User Action → Refresh → State Persists
+
+Navigation Test:
+User Action → Navigate → State Persists
