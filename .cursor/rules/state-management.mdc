@@ -51,3 +51,33 @@ User Action → Refresh → State Persists
 
 Navigation Test:
 User Action → Navigate → State Persists
+
+## Zustand Persist + Next.js
+
+When using persisted Zustand state:
+
+- Never render persisted values during SSR
+- Use hydration guards
+- Use useHydrated() for persisted state
+- Prevent server/client HTML mismatches
+
+Checklist:
+
+Server HTML === Initial Client HTML
+
+# Next.js + Zustand Persist
+
+Persisted state must never affect server-rendered HTML.
+
+Pattern:
+
+1. Create useHydrated() hook
+2. Use hydration guards
+3. Render persisted state only after hydration
+
+Applies to:
+
+- Cart
+- Wishlist
+- User Session
+- Preferences
