@@ -1,13 +1,19 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-const steps = [
+type CheckoutStep = "cart" | "shipping" | "payment";
+
+interface ProgressStep {
+  id: CheckoutStep;
+  label: string;
+  href?: string;
+}
+
+const steps: ProgressStep[] = [
   { id: "cart", label: "Cart", href: "/cart" },
   { id: "shipping", label: "Shipping" },
   { id: "payment", label: "Payment" },
-] as const;
-
-type CheckoutStep = (typeof steps)[number]["id"];
+];
 
 interface CheckoutProgressProps {
   currentStep?: CheckoutStep;

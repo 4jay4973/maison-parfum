@@ -72,6 +72,10 @@ export default function Navbar({
     }
 
     function updateNavbarTheme() {
+      if (!hero) {
+        return;
+      }
+
       const heroBottom = hero.getBoundingClientRect().bottom;
       setIsOverHero(heroBottom > 72);
     }
