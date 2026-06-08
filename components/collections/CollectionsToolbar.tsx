@@ -1,20 +1,21 @@
 "use client";
 
-import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { collectionsPage } from "@/data/collections-page";
 
 interface CollectionsToolbarProps {
   showing: number;
   total: number;
+  sort: string;
+  onSortChange: (sort: string) => void;
 }
 
 export default function CollectionsToolbar({
   showing,
   total,
+  sort,
+  onSortChange,
 }: CollectionsToolbarProps) {
-  const [sort, setSort] = useState(collectionsPage.catalog.defaultSort);
-
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <p className="text-sm text-gray-600">
@@ -36,7 +37,7 @@ export default function CollectionsToolbar({
           <select
             id="sort-products"
             value={sort}
-            onChange={(event) => setSort(event.target.value)}
+            onChange={(event) => onSortChange(event.target.value)}
             aria-label={collectionsPage.catalog.sortLabel}
             className="w-full cursor-pointer appearance-none rounded-xl border border-[var(--border)] bg-white py-2.5 pr-10 pl-4 text-sm text-[var(--foreground)] transition-colors hover:border-[var(--primary)] focus:border-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
           >

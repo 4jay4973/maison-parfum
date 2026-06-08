@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import ProductImage from "@/components/ui/ProductImage";
 import { Product } from "@/types/product";
 import { getGalleryImages } from "@/lib/product-display";
 import { cn } from "@/lib/utils";
@@ -17,7 +17,7 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
   return (
     <div>
       <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--muted)] sm:aspect-[3/4]">
-        <Image
+        <ProductImage
           src={images[activeIndex]}
           alt={product.name}
           fill
@@ -50,7 +50,7 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
                   : "opacity-70 hover:opacity-100"
               )}
             >
-              <Image
+              <ProductImage
                 src={image}
                 alt=""
                 fill

@@ -1,25 +1,36 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+
 interface CheckoutFormProps {
   id?: string;
+  className?: string;
 }
 
-export default function CheckoutForm({ id = "checkout-form" }: CheckoutFormProps) {
+const fieldLabelClass =
+  "text-xs font-medium uppercase tracking-[0.2em] text-gray-500";
+const inputClass =
+  "mt-3 w-full border-0 border-b border-[var(--border)] bg-transparent px-0 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-0";
+
+export default function CheckoutForm({
+  id = "checkout-form",
+  className,
+}: CheckoutFormProps) {
   return (
     <section
       aria-labelledby={`${id}-heading`}
-      className="rounded-3xl border border-[var(--border)] bg-white p-6 md:p-8"
+      className={cn(className)}
     >
       <h2
         id={`${id}-heading`}
-        className="text-xl font-semibold font-[family-name:var(--font-heading)]"
+        className="font-[family-name:var(--font-heading)] text-2xl font-semibold md:text-[1.65rem]"
       >
         Customer Information
       </h2>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 sm:gap-x-8">
         <div>
-          <label htmlFor={`${id}-first-name`} className="text-sm font-medium">
+          <label htmlFor={`${id}-first-name`} className={fieldLabelClass}>
             First Name
           </label>
           <input
@@ -28,12 +39,12 @@ export default function CheckoutForm({ id = "checkout-form" }: CheckoutFormProps
             type="text"
             required
             autoComplete="given-name"
-            className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+            className={inputClass}
           />
         </div>
 
         <div>
-          <label htmlFor={`${id}-last-name`} className="text-sm font-medium">
+          <label htmlFor={`${id}-last-name`} className={fieldLabelClass}>
             Last Name
           </label>
           <input
@@ -42,12 +53,12 @@ export default function CheckoutForm({ id = "checkout-form" }: CheckoutFormProps
             type="text"
             required
             autoComplete="family-name"
-            className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+            className={inputClass}
           />
         </div>
 
         <div className="sm:col-span-2">
-          <label htmlFor={`${id}-email`} className="text-sm font-medium">
+          <label htmlFor={`${id}-email`} className={fieldLabelClass}>
             Email
           </label>
           <input
@@ -56,12 +67,12 @@ export default function CheckoutForm({ id = "checkout-form" }: CheckoutFormProps
             type="email"
             required
             autoComplete="email"
-            className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+            className={inputClass}
           />
         </div>
 
         <div className="sm:col-span-2">
-          <label htmlFor={`${id}-phone`} className="text-sm font-medium">
+          <label htmlFor={`${id}-phone`} className={fieldLabelClass}>
             Phone
           </label>
           <input
@@ -69,7 +80,7 @@ export default function CheckoutForm({ id = "checkout-form" }: CheckoutFormProps
             name="phone"
             type="tel"
             autoComplete="tel"
-            className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+            className={inputClass}
           />
         </div>
       </div>

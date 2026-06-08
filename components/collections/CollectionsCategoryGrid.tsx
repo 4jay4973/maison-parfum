@@ -3,6 +3,7 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import CollectionCard from "@/components/ui/CollectionCard";
 import { collections } from "@/data/collections";
 import { collectionsPage } from "@/data/collections-page";
+import { getProductCountByCategory } from "@/lib/collections";
 
 export default function CollectionsCategoryGrid() {
   return (
@@ -14,9 +15,17 @@ export default function CollectionsCategoryGrid() {
           subtitleTone="gold"
         />
 
-        <div className="grid grid-cols-2 gap-5 sm:gap-6 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
+        <div className="flex flex-wrap justify-center gap-5 sm:gap-6 lg:gap-8">
           {collections.map((collection) => (
-            <CollectionCard key={collection.id} collection={collection} />
+            <div
+              key={collection.id}
+              className="w-[calc(50%-0.625rem)] sm:w-[calc(50%-0.75rem)] md:w-48 lg:w-56 xl:w-64"
+            >
+              <CollectionCard
+                collection={collection}
+                productCount={getProductCountByCategory(collection.slug)}
+              />
+            </div>
           ))}
         </div>
       </Container>

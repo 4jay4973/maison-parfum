@@ -1,27 +1,36 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+
 interface ShippingFormProps {
   id?: string;
+  className?: string;
 }
+
+const fieldLabelClass =
+  "text-xs font-medium uppercase tracking-[0.2em] text-gray-500";
+const inputClass =
+  "mt-3 w-full border-0 border-b border-[var(--border)] bg-transparent px-0 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-0";
 
 export default function ShippingForm({
   id = "shipping-form",
+  className,
 }: ShippingFormProps) {
   return (
     <section
       aria-labelledby={`${id}-heading`}
-      className="rounded-3xl border border-[var(--border)] bg-white p-6 md:p-8"
+      className={cn(className)}
     >
       <h2
         id={`${id}-heading`}
-        className="text-xl font-semibold font-[family-name:var(--font-heading)]"
+        className="font-[family-name:var(--font-heading)] text-2xl font-semibold md:text-[1.65rem]"
       >
         Shipping Address
       </h2>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 sm:gap-x-8">
         <div className="sm:col-span-2">
-          <label htmlFor={`${id}-address`} className="text-sm font-medium">
+          <label htmlFor={`${id}-address`} className={fieldLabelClass}>
             Address
           </label>
           <input
@@ -30,14 +39,14 @@ export default function ShippingForm({
             type="text"
             required
             autoComplete="street-address"
-            className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+            className={inputClass}
           />
         </div>
 
         <div className="sm:col-span-2">
           <label
             htmlFor={`${id}-address-line-2`}
-            className="text-sm font-medium"
+            className={fieldLabelClass}
           >
             Apartment, suite, etc. (optional)
           </label>
@@ -46,12 +55,12 @@ export default function ShippingForm({
             name="addressLine2"
             type="text"
             autoComplete="address-line2"
-            className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+            className={inputClass}
           />
         </div>
 
         <div>
-          <label htmlFor={`${id}-city`} className="text-sm font-medium">
+          <label htmlFor={`${id}-city`} className={fieldLabelClass}>
             City
           </label>
           <input
@@ -60,12 +69,12 @@ export default function ShippingForm({
             type="text"
             required
             autoComplete="address-level2"
-            className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+            className={inputClass}
           />
         </div>
 
         <div>
-          <label htmlFor={`${id}-state`} className="text-sm font-medium">
+          <label htmlFor={`${id}-state`} className={fieldLabelClass}>
             State / Province
           </label>
           <input
@@ -74,12 +83,12 @@ export default function ShippingForm({
             type="text"
             required
             autoComplete="address-level1"
-            className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+            className={inputClass}
           />
         </div>
 
         <div>
-          <label htmlFor={`${id}-postal-code`} className="text-sm font-medium">
+          <label htmlFor={`${id}-postal-code`} className={fieldLabelClass}>
             Postal Code
           </label>
           <input
@@ -88,12 +97,12 @@ export default function ShippingForm({
             type="text"
             required
             autoComplete="postal-code"
-            className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+            className={inputClass}
           />
         </div>
 
         <div>
-          <label htmlFor={`${id}-country`} className="text-sm font-medium">
+          <label htmlFor={`${id}-country`} className={fieldLabelClass}>
             Country
           </label>
           <input
@@ -102,7 +111,7 @@ export default function ShippingForm({
             type="text"
             required
             autoComplete="country-name"
-            className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-sm outline-none transition focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+            className={inputClass}
           />
         </div>
       </div>

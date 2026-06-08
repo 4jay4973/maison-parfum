@@ -5,6 +5,11 @@ import { SlidersHorizontal } from "lucide-react";
 import { collectionsPage } from "@/data/collections-page";
 import { cn } from "@/lib/utils";
 
+interface CollectionsFiltersProps {
+  activeFamily: string;
+  onFamilyChange: (family: string) => void;
+}
+
 function FilterLabel({ children }: { children: React.ReactNode }) {
   return (
     <p className="text-xs font-medium uppercase tracking-[0.2em] text-gray-500">
@@ -13,12 +18,12 @@ function FilterLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function CollectionsFilters() {
+export default function CollectionsFilters({
+  activeFamily,
+  onFamilyChange,
+}: CollectionsFiltersProps) {
   const { filters } = collectionsPage;
 
-  const [activeFamily, setActiveFamily] = useState(
-    filters.fragranceFamily.defaultActive
-  );
   const [activeSize, setActiveSize] = useState(filters.size.defaultActive);
   const [gender, setGender] = useState<Record<string, boolean>>({
     Women: false,
@@ -75,7 +80,7 @@ export default function CollectionsFilters() {
                   key={option}
                   type="button"
                   aria-pressed={isActive}
-                  onClick={() => setActiveFamily(option)}
+                  onClick={() => onFamilyChange(option)}
                   className={cn(
                     "rounded-full px-3.5 py-1.5 text-xs transition-colors duration-300",
                     isActive

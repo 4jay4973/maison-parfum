@@ -27,7 +27,7 @@ export default function ProductBreadcrumbs({
         </li>
         <li>
           <Link
-            href="/collections"
+            href={`/collections?category=${product.category}`}
             className="transition-colors hover:text-[var(--primary)]"
           >
             {categoryLabel}

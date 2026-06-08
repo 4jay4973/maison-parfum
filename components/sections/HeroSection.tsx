@@ -34,9 +34,9 @@ export default function HeroSection() {
             </Link>
           </div>
 
-          <div className="relative mx-auto w-full max-w-sm lg:hidden">
+          <div className="relative mx-auto w-full max-w-sm">
             <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent lg:hidden"
               aria-hidden
             />
             <Image
@@ -51,7 +51,7 @@ export default function HeroSection() {
         </div>
       </Container>
 
-      <div
+      {/* <div
         className="pointer-events-none absolute bottom-0 right-0 hidden h-full w-[58%] lg:block"
         aria-hidden
       >
@@ -64,7 +64,7 @@ export default function HeroSection() {
           priority
           className="absolute bottom-0 right-0 h-[92%] w-auto max-w-none object-contain"
         />
-      </div>
+      </div> */}
     </section>
   );
 }

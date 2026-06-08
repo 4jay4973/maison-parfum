@@ -29,9 +29,9 @@ export default function CollectionsHero() {
             </p>
           </div>
 
-          <div className="relative mx-auto w-full max-w-xs lg:hidden">
+          <div className="relative mx-auto w-full max-w-xs ">
             <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black to-transparent"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black to-transparent lg:hidden"
               aria-hidden
             />
             <Image
@@ -46,7 +46,7 @@ export default function CollectionsHero() {
         </div>
       </Container>
 
-      <div
+      {/* <div
         className="pointer-events-none absolute bottom-0 right-0 hidden h-full w-[52%] lg:block"
         aria-hidden
       >
@@ -59,7 +59,7 @@ export default function CollectionsHero() {
           priority
           className="absolute bottom-0 right-0 h-[88%] w-auto max-w-none object-contain"
         />
-      </div>
+      </div> */}
     </section>
   );
 }

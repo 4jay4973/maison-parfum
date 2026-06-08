@@ -10,7 +10,6 @@ export const collectionsPage = {
     title: "Fragrance Collections",
   },
   catalog: {
-    totalCount: 64,
     sortLabel: "Sort by",
     defaultSort: "Best Sellers",
   },
@@ -18,8 +17,8 @@ export const collectionsPage = {
     title: "Refine",
     fragranceFamily: {
       label: "Fragrance Family",
-      options: ["Floral", "Oriental", "Woody", "Fresh", "Citrus"],
-      defaultActive: "Floral",
+      options: ["All", "Floral", "Oriental", "Woody"],
+      defaultActive: "All",
     },
     gender: {
       label: "Gender",

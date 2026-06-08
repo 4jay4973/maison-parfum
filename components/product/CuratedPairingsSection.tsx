@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ProductImage from "@/components/ui/ProductImage";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import SectionTitle from "@/components/ui/SectionTitle";
@@ -22,12 +22,12 @@ function PairingCard({ pairing }: PairingCardProps) {
         className="flex h-full flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
       >
         <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-[var(--muted)] sm:aspect-[3/4]">
-          <Image
+          <ProductImage
             src={product.image}
             alt={product.name}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none"
+            className="object-contain p-4 transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none"
           />
         </div>
 

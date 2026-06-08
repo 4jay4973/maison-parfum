@@ -9,11 +9,9 @@ export interface Category {
   image: string;
 }
 
-const categorySlugs: ProductCategory[] = ["floral", "oriental", "woody"];
-
-const categories: Category[] = collections.map((collection, index) => ({
+const categories: Category[] = collections.map((collection) => ({
   id: collection.id,
-  slug: categorySlugs[index],
+  slug: collection.slug,
   name: collection.title,
   description: collection.description,
   image: collection.image,

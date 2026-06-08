@@ -17,7 +17,7 @@ export default function CartPage() {
       <main>
         <section className="border-b border-[var(--border)] bg-[var(--muted)] py-12 md:py-16">
           <Container>
-            <p className="mb-2 text-sm uppercase tracking-widest text-gray-500">
+            <p className="mb-2 text-xs font-medium uppercase tracking-[0.28em] text-[var(--primary)] sm:text-sm">
               Your Selection
             </p>
             <h1 className="text-3xl font-semibold md:text-5xl font-[family-name:var(--font-heading)]">

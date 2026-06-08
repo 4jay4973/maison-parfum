@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
+import ProductImage from "@/components/ui/ProductImage";
 import Link from "next/link";
 import { Heart, ShoppingBag, Star } from "lucide-react";
 import { Product, FragranceNotes } from "@/types/product";
+import { getBreadcrumbCategoryLabel } from "@/lib/product-display";
 import { useCartStore } from "@/lib/store/cart-store";
 import { useWishlistStore } from "@/lib/store/wishlist-store";
 import { useHydrated } from "@/hooks/useHydrated";
@@ -59,7 +60,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
-      <div className="relative bg-[var(--muted)] px-4 pt-6 pb-5 sm:px-6 sm:pt-8">
+      <div className="relative bg-[var(--muted)]">
         <button
           type="button"
           onClick={handleWishlistClick}
@@ -78,12 +79,12 @@ export default function ProductCard({ product }: ProductCardProps) {
           href={`/product/${product.slug}`}
           className="mx-auto block max-w-[210px] transition-transform duration-300 group-hover:scale-[1.02]"
         >
-          <div className="aspect-[4/5] bg-white p-3 shadow-sm sm:p-4">
-            <Image
+          <div className="aspect-[1/1] bg-[var(--muted)]">
+            <ProductImage
               src={product.image}
               alt={product.name}
               width={400}
-              height={500}
+              height={400}
               className="h-full w-full object-contain"
             />
           </div>
@@ -95,7 +96,11 @@ export default function ProductCard({ product }: ProductCardProps) {
           href={`/product/${product.slug}`}
           className="transition-opacity hover:opacity-80"
         >
-          <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold leading-snug sm:text-xl">
+          <p className="text-[0.65rem] uppercase tracking-[0.18em] text-[var(--primary)]">
+            {getBreadcrumbCategoryLabel(product.category)}
+          </p>
+
+          <h3 className="mt-1 font-[family-name:var(--font-heading)] text-lg font-semibold leading-snug sm:text-xl">
             {product.name}
           </h3>
         </Link>
