@@ -28,11 +28,14 @@ function NoteList({ label, notes }: NoteListProps) {
 
 export default function FragranceNotes({ notes }: FragranceNotesProps) {
   return (
-    <div className="mt-8 border-t border-[var(--border)] pt-8">
-      <h2 className="text-xl font-semibold font-[family-name:var(--font-heading)]">
+    <div>
+      <p className="mb-2 text-xs uppercase tracking-[0.3em] text-[var(--primary)] sm:text-sm">
         Fragrance Notes
+      </p>
+      <h2 className="font-[family-name:var(--font-heading)] text-2xl font-semibold md:text-3xl">
+        The Composition
       </h2>
-      <div className="mt-6 grid gap-6 sm:grid-cols-3">
+      <div className="mt-8 grid gap-8 sm:grid-cols-3">
         <NoteList label="Top Notes" notes={notes.top} />
         <NoteList label="Middle Notes" notes={notes.middle} />
         <NoteList label="Base Notes" notes={notes.base} />

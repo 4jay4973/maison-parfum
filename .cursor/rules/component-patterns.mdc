@@ -1,0 +1,151 @@
+# Maison Parfum Component Patterns
+
+Reusable patterns for building consistent, maintainable UI. Prefer composition over duplication. Never recreate layout primitives that already exist.
+
+## Project Structure
+
+```
+components/
+  ui/          → primitives (Button, cards, SectionTitle)
+  layout/      → Navbar, Footer, Container
+  sections/    → homepage and marketing sections
+  product/     → product detail components
+  cart/        → cart page components
+  wishlist/    → wishlist page components
+  checkout/    → checkout page components
+```
+
+## Section Pattern
+
+Every marketing or catalog section must use:
+
+- `Container` for horizontal padding and max width
+- `SectionTitle` when the section has a heading (subtitle + title)
+
+Standard structure:
+
+```tsx
+<section className="py-20">
+  <Container>
+    <SectionTitle subtitle="..." title="..." />
+    {/* section content */}
+  </Container>
+</section>
+```
+
+Guidelines:
+
+- Page-level headers may use inline eyebrow + `h1` where `SectionTitle` (`h2`) is not appropriate
+- Alternate section backgrounds with `bg-[var(--muted)]` sparingly
+- Use consistent vertical padding within page types
+- Do not wrap sections in extra divs that duplicate `Container` behavior
+
+## Card Pattern
+
+All cards must follow the shared visual pattern:
+
+- `rounded-3xl`
+- `border border-[var(--border)]`
+- `bg-white`
+- Consistent inner padding (`p-5` or `p-6`)
+- No decorative shadows
+
+Existing card components to reuse:
+
+- `ProductCard`
+- `CollectionCard`
+- `TestimonialCard`
+
+Guidelines:
+
+- Use consistent spacing between card elements (`mt-1`, `mt-2`, `mt-4`)
+- Fixed image heights only when needed for grid alignment
+- Hover: subtle image scale or opacity — never aggressive transforms
+- Link cards by wrapping with `Link`, not duplicating card markup
+- Extract a shared card shell only when a third variant is needed
+
+## Layout Primitives
+
+Never duplicate these — always import and compose:
+
+| Primitive | Purpose |
+|---|---|
+| `Container` | Page width, horizontal padding |
+| `SectionTitle` | Section headings |
+| `Button` | All CTAs and form submits |
+| `Navbar` | Site header |
+| `Footer` | Site footer |
+
+Do not create alternate wrappers for max-width, padding, or section headings.
+
+## Composition Over Duplication
+
+Before creating a new component:
+
+1. Check `components/ui/` for an existing primitive
+2. Check `components/sections/` for a similar section pattern
+3. Extend via props or children rather than copying markup
+4. Extract shared patterns only after the second real duplication
+
+Prefer:
+
+- Composing `Container` + `SectionTitle` + domain component
+- Passing data as props with strict TypeScript interfaces
+- Small, focused components with single responsibility
+
+Avoid:
+
+- Copy-pasting grid layouts across sections
+- Inline card markup when `ProductCard` or siblings apply
+- Local layout helpers that mirror `Container`
+
+## Styling Rules
+
+- Tailwind CSS only
+- No inline styles
+- Use design tokens from `globals.css`:
+  - `--background`, `--foreground`, `--primary`, `--secondary`, `--muted`, `--border`
+  - `--font-heading`, `--font-body`, `--radius`
+- Use `font-[family-name:var(--font-heading)]` for serif headings
+- Prefer token-based colors over hardcoded grays
+
+## Responsive Design
+
+- Mobile-first: base styles for small screens, scale up with `sm:`, `md:`, `lg:`
+- Grids: `grid gap-8 md:grid-cols-2 lg:grid-cols-3` for card collections
+- Stack forms and sidebars vertically on mobile
+- Test navigation, grids, and checkout flows at narrow widths
+
+## Accessibility
+
+- Use semantic HTML (`main`, `section`, `nav`, `article`, `button`)
+- Label icon-only buttons with `aria-label`
+- Associate form inputs with `<label>` or `sr-only` labels
+- Provide visible or `focus-visible` focus states
+- Use `aria-expanded`, `aria-controls`, and `aria-pressed` where state matters
+- Guard persisted client state with `useHydrated()` to prevent hydration mismatches
+
+## TypeScript
+
+- Strict typing on all props via interfaces
+- No `any`
+- Colocate prop types with components
+- Import domain types from `types/` (e.g. `Product`, `Collection`)
+
+## Client vs Server
+
+- Default to Server Components
+- Add `"use client"` only when hooks, events, or browser APIs are required
+- Keep data fetching in `lib/api/` — never in UI components
+- Zustand stores are client-only; read with hydration guards when rendering persisted state
+
+## Checklist for New Components
+
+- [ ] Uses `Container` if it is a section
+- [ ] Uses `SectionTitle` if it has a section heading
+- [ ] Follows shared card pattern if displaying a card
+- [ ] Uses design tokens, not ad-hoc colors
+- [ ] Mobile-first responsive
+- [ ] Accessible labels and focus states
+- [ ] Typed props interface
+- [ ] No duplicated layout primitives

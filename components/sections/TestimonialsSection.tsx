@@ -10,6 +10,7 @@ export default function TestimonialsSection() {
         <SectionTitle
           subtitle="Client Love"
           title="What Our Customers Say"
+          subtitleTone="gold"
         />
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

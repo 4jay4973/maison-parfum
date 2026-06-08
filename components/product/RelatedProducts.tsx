@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Container from "@/components/layout/Container";
 import SectionTitle from "@/components/ui/SectionTitle";
 import ProductCard from "@/components/ui/ProductCard";
@@ -23,13 +22,7 @@ export default function RelatedProducts({ products }: RelatedProductsProps) {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
-            <Link
-              key={product.id}
-              href={`/product/${product.slug}`}
-              className="block transition hover:opacity-90"
-            >
-              <ProductCard product={product} />
-            </Link>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </Container>

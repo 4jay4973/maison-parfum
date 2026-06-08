@@ -4,16 +4,18 @@ import HeroSection from "@/components/sections/HeroSection";
 import FeaturedProductsSection from "@/components/sections/FeaturedProductsSection";
 import FeaturedCollectionsSection from "@/components/sections/FeaturedCollectionsSection";
 import BrandStorySection from "@/components/sections/BrandStorySection";
+import DiscoveryQuizCTA from "@/components/sections/DiscoveryQuizCTA";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import NewsletterSection from "@/components/sections/NewsletterSection";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <Navbar transparent />
       <HeroSection />
       <FeaturedCollectionsSection />
       <FeaturedProductsSection />
+      <DiscoveryQuizCTA />
       <TestimonialsSection />
       <BrandStorySection />
       <NewsletterSection />

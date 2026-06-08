@@ -23,16 +23,11 @@ export default function BrandStorySection() {
 
           {/* Content */}
           <div className="order-1 lg:order-2">
-            <p className="mb-4 text-sm uppercase tracking-[0.3em] text-gray-500">
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-[var(--primary)] sm:text-sm">
               Our Story
             </p>
 
-            <h2
-              className="mb-6 text-4xl font-semibold leading-tight lg:text-5xl"
-              style={{
-                fontFamily: "var(--font-heading)",
-              }}
-            >
+            <h2 className="mb-6 font-[family-name:var(--font-heading)] text-4xl font-semibold leading-tight lg:text-5xl">
               {brandStory.title}
             </h2>
 

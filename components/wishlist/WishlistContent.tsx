@@ -49,13 +49,7 @@ export default function WishlistContent() {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {displayItems.map((product) => (
-            <Link
-              key={product.id}
-              href={`/product/${product.slug}`}
-              className="block transition hover:opacity-90"
-            >
-              <ProductCard product={product} />
-            </Link>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </Container>

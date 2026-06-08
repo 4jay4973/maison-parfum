@@ -1,44 +1,144 @@
+"use client";
+
 import Image from "next/image";
-import { Product } from "@/types/product";
+import Link from "next/link";
+import { Heart, ShoppingBag, Star } from "lucide-react";
+import { Product, FragranceNotes } from "@/types/product";
+import { useCartStore } from "@/lib/store/cart-store";
+import { useWishlistStore } from "@/lib/store/wishlist-store";
+import { useHydrated } from "@/hooks/useHydrated";
+import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
 }
 
-export default function ProductCard({
-  product,
-}: ProductCardProps) {
+function formatScentLine(notes: FragranceNotes): string {
+  const accent = notes.top[0];
+  const depth = notes.base[0] ?? notes.middle[0];
+
+  if (accent && depth) {
+    return `${accent} & ${depth}`;
+  }
+
+  return [...notes.top, ...notes.middle].slice(0, 2).join(" & ");
+}
+
+function formatPrice(price: number): string {
+  return Number.isInteger(price) ? `$${price}` : `$${price.toFixed(2)}`;
+}
+
+export default function ProductCard({ product }: ProductCardProps) {
+  const hydrated = useHydrated();
+  const addItem = useCartStore((state) => state.addItem);
+  const toggleItem = useWishlistStore((state) => state.toggleItem);
+  const isInWishlist = useWishlistStore((state) =>
+    state.isInWishlist(product.id)
+  );
+
+  const inWishlist = hydrated && isInWishlist;
+  const defaultSize = product.sizes[product.sizes.length - 1];
+  const isOutOfStock = product.stockStatus === "out_of_stock";
+  const scentLine = formatScentLine(product.notes);
+  const filledStars = Math.round(product.rating);
+
+  function handleWishlistClick(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleItem(product);
+  }
+
+  function handleAddToCart(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!defaultSize || isOutOfStock) {
+      return;
+    }
+    addItem(product, defaultSize.label);
+  }
+
   return (
-    <article className="group overflow-hidden rounded-3xl border border-[var(--border)] bg-white">
-      <div className="overflow-hidden">
-        <Image
-          src={product.image}
-          alt={product.name}
-          width={500}
-          height={600}
-          className="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
+      <div className="relative bg-[var(--muted)] px-4 pt-6 pb-5 sm:px-6 sm:pt-8">
+        <button
+          type="button"
+          onClick={handleWishlistClick}
+          aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
+          aria-pressed={inWishlist}
+          className="absolute top-4 right-4 z-10 rounded-full p-1.5 text-gray-500 transition-colors hover:text-[var(--primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)]"
+        >
+          <Heart
+            size={18}
+            className={cn(inWishlist && "fill-red-500 text-red-500")}
+            aria-hidden
+          />
+        </button>
+
+        <Link
+          href={`/product/${product.slug}`}
+          className="mx-auto block max-w-[210px] transition-transform duration-300 group-hover:scale-[1.02]"
+        >
+          <div className="aspect-[4/5] bg-white p-3 shadow-sm sm:p-4">
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={400}
+              height={500}
+              className="h-full w-full object-contain"
+            />
+          </div>
+        </Link>
       </div>
 
-      <div className="p-5">
-        <p className="text-sm text-gray-500">
-          {product.brand}
+      <div className="flex flex-1 flex-col p-4 sm:p-5">
+        <Link
+          href={`/product/${product.slug}`}
+          className="transition-opacity hover:opacity-80"
+        >
+          <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold leading-snug sm:text-xl">
+            {product.name}
+          </h3>
+        </Link>
+
+        <p className="mt-1.5 text-xs leading-relaxed text-gray-500 sm:text-sm">
+          {scentLine}
         </p>
 
-        <h3 className="mt-1 text-lg font-medium">
-          {product.name}
-        </h3>
-
-        <div className="mt-2 flex items-center gap-2 text-sm">
-          <span>⭐ {product.rating}</span>
-          <span className="text-gray-500">
+        <div className="mt-3 flex items-center gap-1.5">
+          <div className="flex items-center gap-0.5" aria-hidden>
+            {Array.from({ length: 5 }).map((_, index) => (
+              <Star
+                key={index}
+                size={14}
+                className={cn(
+                  index < filledStars
+                    ? "fill-[var(--primary)] text-[var(--primary)]"
+                    : "fill-transparent text-gray-300"
+                )}
+              />
+            ))}
+          </div>
+          <span className="sr-only">{product.rating} out of 5 stars</span>
+          <span className="text-xs text-gray-500">
             ({product.reviewCount})
           </span>
         </div>
 
-        <p className="mt-4 text-xl font-semibold">
-          ${product.price}
-        </p>
+        <div className="mt-auto flex flex-col gap-3 pt-4">
+          <p className="font-[family-name:var(--font-heading)] text-xl text-[var(--primary)]">
+            {formatPrice(product.price)}
+          </p>
+
+          <button
+            type="button"
+            onClick={handleAddToCart}
+            disabled={isOutOfStock}
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-black px-4 py-3 text-xs font-medium uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <ShoppingBag size={16} className="shrink-0" aria-hidden />
+            <span>Add to Cart</span>
+          </button>
+        </div>
       </div>
     </article>
   );

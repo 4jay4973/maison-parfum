@@ -3,15 +3,18 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/layout/Container";
+import ProductBreadcrumbs from "@/components/product/ProductBreadcrumbs";
 import ProductGallery from "@/components/product/ProductGallery";
 import ProductInfo from "@/components/product/ProductInfo";
-import FragranceNotes from "@/components/product/FragranceNotes";
-import RelatedProducts from "@/components/product/RelatedProducts";
+import OlfactoryJourney from "@/components/product/OlfactoryJourney";
+import IngredientsAccordion from "@/components/product/IngredientsAccordion";
+import ProductReviews from "@/components/product/ProductReviews";
+import CuratedPairingsSection from "@/components/product/CuratedPairingsSection";
 import {
   getAllProductSlugs,
   getProductBySlug,
-  getRelatedProducts,
 } from "@/lib/products";
+import { getCuratedPairings } from "@/lib/product-pairings";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -45,37 +48,28 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  const relatedProducts = getRelatedProducts(product);
+  const pairings = getCuratedPairings(product.slug);
 
   return (
     <>
       <Navbar />
 
       <main>
-        <section className="py-12 md:py-16">
+        <section className="py-10 md:py-14 lg:py-16">
           <Container>
-            <div className="grid items-start gap-12 lg:grid-cols-2">
+            <ProductBreadcrumbs product={product} />
+
+            <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16">
               <ProductGallery product={product} />
-              <div>
-                <ProductInfo product={product} />
-                <FragranceNotes notes={product.notes} />
-              </div>
+              <ProductInfo product={product} />
             </div>
           </Container>
         </section>
 
-        <section className="border-t border-[var(--border)] py-12 md:py-16">
-          <Container>
-            <h2 className="text-2xl font-semibold md:text-3xl font-[family-name:var(--font-heading)]">
-              About This Fragrance
-            </h2>
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-gray-600">
-              {product.description}
-            </p>
-          </Container>
-        </section>
-
-        <RelatedProducts products={relatedProducts} />
+        <OlfactoryJourney notes={product.notes} />
+        <IngredientsAccordion description={product.description} />
+        <ProductReviews product={product} />
+        <CuratedPairingsSection pairings={pairings} />
       </main>
 
       <Footer />

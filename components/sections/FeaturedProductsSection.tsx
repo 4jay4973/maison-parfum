@@ -10,6 +10,7 @@ export default function FeaturedProductsSection() {
         <SectionTitle
           subtitle="Best Sellers"
           title="Featured Fragrances"
+          subtitleTone="gold"
         />
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

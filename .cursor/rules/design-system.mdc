@@ -1,0 +1,88 @@
+# Maison Parfum Design System
+
+Define the visual language for all UI work. Every component, page, and section should feel like a luxury fragrance house — calm, editorial, and intentional.
+
+## Brand Style
+
+Maison Parfum is a luxury fragrance house with an editorial aesthetic and premium minimalism.
+
+Design inspiration:
+
+- Byredo
+- Le Labo
+- Diptyque
+- Maison Francis Kurkdjian
+
+Guidelines:
+
+- Prioritize restraint over decoration
+- Let product imagery and typography carry the experience
+- Favor quiet confidence over loud branding
+- Every layout should feel curated, not crowded
+
+## Typography
+
+- Use serif headings (`--font-heading` / Playfair Display)
+- Use sans-serif body text (`--font-body` / Inter)
+- Establish clear hierarchy: eyebrow → title → body → caption
+- Editorial titles should be large and confident (`text-3xl` to `text-7xl` at appropriate breakpoints)
+- Use generous line heights for body copy (`leading-relaxed` or looser)
+- Eyebrow labels: uppercase, wide tracking, small size, muted color
+- Avoid mixing too many font sizes on a single screen
+
+## Spacing
+
+- Prefer whitespace over density
+- Use large section padding (`py-12` to `py-32` depending on context)
+- Keep content within comfortable reading width (`max-w-xl` to `max-w-3xl` for prose)
+- Use consistent grid gaps (`gap-8` to `gap-12`)
+- Let sections breathe — never pack elements tightly without reason
+- Align with `Container` for horizontal rhythm
+
+## Colors
+
+Use the existing CSS variable palette:
+
+- `--background` — warm ivory (`#f8f5f0`)
+- `--foreground` — high contrast text (`#111111`)
+- `--primary` — refined gold accent (`#c9a45c`)
+- `--secondary` — deep neutral (`#1a1a1a`)
+- `--muted` — soft section backgrounds (`#e9e4dc`)
+- `--border` — subtle dividers (`#d9d3ca`)
+
+Guidelines:
+
+- Neutral palette first; gold accent sparingly
+- Warm ivory backgrounds, not pure white pages
+- Soft borders instead of heavy outlines
+- High contrast text for readability
+- Muted grays only for secondary information
+- Avoid bright, saturated, or playful color combinations
+
+## Components
+
+- Refined and understated
+- Avoid flashy UI patterns (gradients, glows, badges, loud CTAs)
+- Avoid excessive shadows — prefer borders and spacing for depth
+- Border radius should remain subtle (`rounded-xl` for controls, `rounded-3xl` for cards)
+- Cards: light borders, white or ivory surfaces, minimal chrome
+- Buttons: simple shapes, restrained hover states (opacity or color shift, not scale)
+- Forms: clean inputs with soft borders and subtle focus rings
+- Icons: thin strokes, used sparingly
+
+## Interactions
+
+- Smooth, understated transitions (`transition-all`, 200–300ms)
+- Luxury feel: deliberate, never snappy or playful
+- No aggressive animations (no bounce, shake, or exaggerated scale)
+- Hover effects should be subtle (opacity, border color, slight image scale at most)
+- Respect `prefers-reduced-motion` when adding animation
+- Focus states must be visible but elegant
+
+## Do Not
+
+- Do not use inline styles
+- Do not introduce colors outside the design tokens without reason
+- Do not add drop shadows for decoration
+- Do not use dense, marketplace-style layouts
+- Do not over-animate hover states or page transitions
